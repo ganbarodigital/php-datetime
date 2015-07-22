@@ -5,3 +5,4 @@
 ### New
 
 * ValueBuilders\BuildTimeoutAsFloat
+* ValueBuilders\BuildTimeoutAsInt
