@@ -44,6 +44,7 @@
 namespace GanbaroDigital\DateTime\ValueBuilders;
 
 use GanbaroDigital\DateTime\Exceptions\E4xx_UnsupportedType;
+use GanbaroDigital\DateTime\Requirements\RequireTimeoutOrNull;
 
 class BuildTimeoutAsInt
 {
@@ -61,6 +62,10 @@ class BuildTimeoutAsInt
      */
     public static function from($defaultTimeout, $overrideTimeout = null)
     {
+        // robustness!
+        RequireTimeoutOrNull::check($defaultTimeout);
+        RequireTimeoutOrNull::check($overrideTimeout);
+
         $retval = $overrideTimeout === null ? $defaultTimeout : $overrideTimeout;
         if ($retval === null) {
             return $retval;

@@ -44,7 +44,7 @@
 namespace GanbaroDigital\DateTime\ValueBuilders;
 
 use GanbaroDigital\DateTime\Exceptions\E4xx_UnsupportedType;
-use GanbaroDigital\Reflection\Requirements\RequireNumeric;
+use GanbaroDigital\DateTime\Requirements\RequireTimeoutOrNull;
 
 class BuildTimeoutAsFloat
 {
@@ -63,13 +63,26 @@ class BuildTimeoutAsFloat
     public static function from($defaultTimeout, $overrideTimeout = null)
     {
         // robustness!
-        if (!is_null($defaultTimeout)) {
-            RequireNumeric::check($defaultTimeout, E4xx_UnsupportedType::class);
-        }
-        if (!is_null($overrideTimeout)) {
-            RequireNumeric::check($overrideTimeout, E4xx_UnsupportedType::class);
-        }
+        RequireTimeoutOrNull::check($defaultTimeout);
+        RequireTimeoutOrNull::check($overrideTimeout);
 
+        return self::fromNumeric($defaultTimeout, $overrideTimeout);
+    }
+
+    /**
+     * create a timeout value by looking at a default timeout and an
+     * optional override value
+     *
+     * @param  int|float|null $defaultTimeout
+     *         what is the default timeout to use?
+     * @param  int|float|null $overrideTimeout
+     *         what override value do we want to use?
+     * @return float|null
+     *         NULL if there is no timeout
+     *         a float otherwise
+     */
+    private static function fromNumeric($defaultTimeout, $overrideTimeout)
+    {
         $retval = $overrideTimeout === null ? $defaultTimeout : $overrideTimeout;
         if ($retval === null) {
             return $retval;
