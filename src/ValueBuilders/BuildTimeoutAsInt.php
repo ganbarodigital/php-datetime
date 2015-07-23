@@ -82,7 +82,7 @@ class BuildTimeoutAsInt
      *         what is the default timeout to use?
      * @param  int|float|null $overrideTimeout
      *         what override value do we want to use?
-     * @return float|null
+     * @return int|null
      *         NULL if there is no timeout
      *         a float otherwise
      */
