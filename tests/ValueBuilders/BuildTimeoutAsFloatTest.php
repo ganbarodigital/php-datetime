@@ -93,6 +93,7 @@ class BuildTimeoutAsFloatTest extends PHPUnit_Framework_TestCase
 
     /**
      * @covers ::from
+     * @covers ::fromNumeric
      * @dataProvider provideTimeoutsToTest
      */
     public function testCanCallStatically($data, $expectedResult)
@@ -114,6 +115,7 @@ class BuildTimeoutAsFloatTest extends PHPUnit_Framework_TestCase
     /**
      * @covers ::__invoke
      * @covers ::from
+     * @covers ::fromNumeric
      */
     public function testReturnsNullWhenNoTimeoutsProvided()
     {
@@ -138,6 +140,7 @@ class BuildTimeoutAsFloatTest extends PHPUnit_Framework_TestCase
     /**
      * @covers ::__invoke
      * @covers ::from
+     * @covers ::fromNumeric
      * @dataProvider provideTimeoutsToTest
      */
     public function testReturnsDefaultTimeoutWhenNoOverrideProvided($defaultTimeout, $expectedResult)
@@ -163,6 +166,7 @@ class BuildTimeoutAsFloatTest extends PHPUnit_Framework_TestCase
     /**
      * @covers ::__invoke
      * @covers ::from
+     * @covers ::fromNumeric
      * @dataProvider provideOverrideTimeoutsToTest
      */
     public function testCanOverrideDefaultTimeout($defaultTimeout, $overrideTimeout, $expectedResult)
