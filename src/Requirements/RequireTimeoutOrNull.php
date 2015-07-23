@@ -60,13 +60,10 @@ class RequireTimeoutOrNull
      */
     public static function check($data)
     {
-        static $requirements = null;
-        if ($requirements === null) {
-            $requirements = [
-                new IsNull,
-                new IsNumeric,
-            ];
-        }
+        static $requirements = [
+            [ IsNull::class, 'check' ],
+            [ IsNumeric::class, 'check' ]
+        ];
 
         RequireAnyOneOf::check($requirements, [$data], E4xx_UnsupportedType::class);
     }

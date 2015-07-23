@@ -72,7 +72,6 @@ class RequireTimeoutOrNullTest extends PHPUnit_Framework_TestCase
 
     /**
      * @covers ::__invoke
-     * @covers ::check
      * @dataProvider provideTimeoutOrNulls
      */
     public function testCanUseAsObject($item)
